@@ -1,0 +1,33 @@
+version: "2"
+services:
+  block-sync:
+    container_name: block-sync
+    image: ixofoundation/ixo-blocksync:latest
+    environment:
+      - NODE_ENV=production
+      - PORT=8080
+      - MONGODB_URI=mongodb://block-sync-db:27017/block-sync
+      - CHAIN_URI=http://BLOCKCHAIN:26657  # Configure this
+      - BC_REST=http://REST:1317           # Configure this
+      - IGNORE_EVENTS=message,rewards,proposer_reward,commission,mint,transfer
+      # - ONLY_EVENTS=
+      - BONDS_INFO_EXTRACT_PERIOD_BLOCKS=1
+    restart: always
+    ports:
+      - "80:8080"
+    links:
+      - block-sync-db
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "1m"
+        max-file: "1"
+
+  block-sync-db:
+    container_name: block-sync-db
+    image: mongo
+    restart: always
+    ports:
+      - "27017:27017"
+    volumes:
+      - ./data/db:/data/db
