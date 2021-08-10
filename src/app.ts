@@ -40,6 +40,14 @@ class App {
       });
     });
 
+    this.express.get('/transactions/listTransactionsByBondDid/:did', (req, res, next) => {
+      transactionHandler.listTransactionsByBondDid(req.params.did).then((tx: any) => {
+        res.send(tx);
+      }).catch((err) => {
+        next(err);
+      });
+    });
+
     this.express.use(logger.after);
   }
 }

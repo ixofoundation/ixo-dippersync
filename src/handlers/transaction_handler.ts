@@ -19,4 +19,22 @@ export class TransactionHandler {
           });
         });
     };
+
+    listTransactionsByBondDid = (did: string) => {
+      return new Promise((resolve: Function, reject: Function) => {
+        return TransactionDB.aggregate([
+            {$unwind: '$tx.body.messages'},
+            {$match: {$or: [{"tx.body.messages.@type": "/bonds.MsgBuy"}, {"tx.body.messages.@type": "/bonds.MsgSell"}]}},
+            {$match: {"tx.body.messages.bond_did": did}},
+          ],
+          (err, res) => {
+          if (err) {
+            reject(err);
+          } else {
+            io.emit('list buys and sells for a given bond did', res);
+            resolve(res);
+          }
+        });
+      });
+  };
 }
