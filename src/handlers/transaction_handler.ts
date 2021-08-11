@@ -5,7 +5,6 @@ export class TransactionHandler {
     listTransactionsByAddress = (addr: string) => {
         return new Promise((resolve: Function, reject: Function) => {
           return TransactionDB.aggregate([
-              {$unwind: '$tx.body.messages'},
               {$match: {"tx.body.messages.@type": "/cosmos.bank.v1beta1.MsgSend"}},
               {$match: {$or: [{"tx.body.messages.from_address": addr}, {"tx.body.messages.to_address": addr}]}},
             ],
@@ -20,10 +19,35 @@ export class TransactionHandler {
         });
     };
 
+    listTransactionsByAddressByAsset = (addr: string, asset: string) => {
+      return new Promise((resolve: Function, reject: Function) => {
+        return TransactionDB.aggregate([
+            {$match: {"tx.body.messages.@type": "/cosmos.bank.v1beta1.MsgSend"}},
+            {$match: {
+              "tx.body.messages": {
+                $elemMatch: {
+                  $or: [
+                    {"from_address": addr}, {"to_address": addr}
+                  ],
+                  "amount.denom": asset
+                }
+              }
+            }},
+          ],
+          (err, res) => {
+          if (err) {
+            reject(err);
+          } else {
+            io.emit('list sends and receives for a given address and a given denom', res);
+            resolve(res);
+          }
+        });
+      });
+  };
+
     listTransactionsByBondDid = (did: string) => {
       return new Promise((resolve: Function, reject: Function) => {
         return TransactionDB.aggregate([
-            {$unwind: '$tx.body.messages'},
             {$match: {$or: [{"tx.body.messages.@type": "/bonds.MsgBuy"}, {"tx.body.messages.@type": "/bonds.MsgSell"}]}},
             {$match: {"tx.body.messages.bond_did": did}},
           ],
