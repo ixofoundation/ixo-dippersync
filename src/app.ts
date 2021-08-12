@@ -28,8 +28,8 @@ class App {
   // Configure API endpoints.
   private routes(transactionHandler: TransactionHandler): void {
     // GET REQUESTS
-    this.express.get('/', (req, res) => {
-      res.send('API is running');
+    this.express.get('/transactions/', (req, res) => {
+      res.send('Transactions API is running');
     });
 
     this.express.get('/transactions/listTransactionsByAddr/:addr', (req, res, next) => {
