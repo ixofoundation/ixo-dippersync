@@ -263,12 +263,9 @@ definitions:
         properties:
           single:
             type: object
-            properties:
-              single:
-                type: object
-                properties: 
-                  mode:
-                    type: string
+            properties: 
+              mode:
+                type: string
           sequence:
             type: string       
   Log:
