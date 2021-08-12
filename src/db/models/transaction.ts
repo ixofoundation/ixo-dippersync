@@ -14,12 +14,7 @@ let AmountSchema = new Schema({
     amount: String,
 });
 
-let MsgSchema = new Schema({
-    "@type": String,
-    from_address: String,
-    to_address: String,
-    amount: [AmountSchema]
-})
+let TypeValueSchema = new Schema({})
 
 let SignerSchema = new Schema({
     public_key: {
@@ -52,11 +47,11 @@ export var TransactionSchema: Schema = new Schema (
         processed: Boolean,
         tx: {
             body: {
-                messages: [MsgSchema],
+                messages: [TypeValueSchema],
                 memo: String,
                 timeout_height: String,
-                extension_options: [String], // TODO
-                non_critical_extension_options: [String] // TODO
+                extension_options: [TypeValueSchema],
+                non_critical_extension_options: [TypeValueSchema]
             },
             auth_info: {
                 signer_infos: [SignerSchema],
@@ -83,11 +78,11 @@ export var TransactionSchema: Schema = new Schema (
             tx: {
                 "@type": String,
                 body: {
-                    messages: [MsgSchema],
+                    messages: [TypeValueSchema],
                     memo: String,
                     timeout_height: String,
-                    extension_options: [String], // TODO
-                    non_critical_extension_options: [String] // TODO
+                    extension_options: [TypeValueSchema],
+                    non_critical_extension_options: [TypeValueSchema]
                 },
                 auth_info: {
                     signer_infos: [SignerSchema],
