@@ -1,20 +1,15 @@
-# ixo-blocksync
-Syncs all the public info from an ixo blockchain to an instance of MongoDB.
+# ixo-dippersync
+Exposes endpoints that return data from a MongoDB populated by Big Dipper.
 
 ## API Documentation
 Refer to [src/schema/api.yml](src/schema/api.yml) or visit [the online version](https://app.swaggerhub.com/apis/drshaun/ixo/0.2.1).
-
-## Notes about Events
-- **Warning**: Setting blocksync to accept all events leads to a lot of events
-- Note that setting `ONLY_EVENTS` means that `IGNORE_EVENTS` becomes irrelevant
-- To ignore all events, one can set `ONLY_EVENTS` to some random string
 
 ## Run
 
 ### From Source
 **Requirements**: [MongoDB](https://docs.mongodb.com/manual/installation/)
 
-Copy `.env-example` to `.env` and configure. If this step is skipped, ixo-blocksync will use `.env-example` as the configuration by default.
+Copy `.env-example` to `.env` and configure. If this step is skipped, ixo-dippersync will use `.env-example` as the configuration by default.
 
 Then:
 ```bash
