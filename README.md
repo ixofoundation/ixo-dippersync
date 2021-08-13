@@ -1,8 +1,8 @@
 # ixo-dippersync
-Exposes endpoints that return data from a MongoDB populated by Big Dipper.
+Exposes endpoints that return data from a MongoDB populated by [Big Dipper](https://github.com/forbole/big-dipper).
 
 ## API Documentation
-Refer to [src/schema/api.yml](src/schema/api.yml) or visit [the online version](https://app.swaggerhub.com/apis/drshaun/ixo/0.2.1).
+Refer to [src/schema/api.yml](src/schema/api.yml) or visit the online version (coming soon).
 
 ## Run
 
@@ -21,7 +21,7 @@ npm start
 ### Using Docker (with Compose)
 **Requirements**: [Docker](https://docs.docker.com/engine/install/) and [Docker Compose](https://docs.docker.com/compose/install/)
 
-Configure environment in `docker-compose.yml`, especially `CHAIN_URI` and `BC_REST`.
+Configure environment in `docker-compose.yml`.
 
 Then:
 ```bash

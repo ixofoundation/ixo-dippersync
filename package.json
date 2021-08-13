@@ -1,7 +1,7 @@
 {
-  "name": "ixo-blocksync",
+  "name": "ixo-dippersync",
   "version": "1.1.7",
-  "description": "Syncs all the public info from an ixo blockchain to an instance of MongoDB ",
+  "description": "Exposes endpoints that return data from a MongoDB populated by Big Dipper",
   "main": "index.js",
   "scripts": {
     "start": "tsc && node build/dist/server.js",
@@ -9,11 +9,11 @@
     "build": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": "https://github.com/ixofoundation/ixo-blocksync",
+  "repository": "https://github.com/ixofoundation/ixo-dippersync",
   "keywords": [
     "blockchain"
   ],
-  "author": "Nicolaas Vercuiel",
+  "author": "Nicolaas Vercuiel/Stefania Damato",
   "license": "MIT",
   "dependencies": {
     "axios": "^0.21.1",
