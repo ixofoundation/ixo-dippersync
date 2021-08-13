@@ -99,12 +99,7 @@ definitions:
           messages:
             type: array
             items:
-              type: object
-              properties:
-                type_url:
-                  type: string
-                value:
-                  type: string
+              $ref: '#/definitions/TypeValue'
           memo: 
             type: string
           timeout_height:
@@ -112,21 +107,11 @@ definitions:
           extension_options: 
             type: array
             items: 
-              type: object
-              properties:
-                type_url:
-                  type: string
-                value:
-                  type: string  
+              $ref: '#/definitions/TypeValue'
           non_critical_extension_options:
             type: array
             items: 
-              type: object
-              properties:
-                type_url:
-                  type: string
-                value:
-                  type: string 
+              $ref: '#/definitions/TypeValue'
       auth_info:
         type: object
         properties:
@@ -179,7 +164,7 @@ definitions:
       tx:
         type: object
         properties:
-          type_url:
+          "@type":
             type: string
           body:
             type: object
@@ -187,12 +172,7 @@ definitions:
               messages:
                 type: array
                 items:
-                  type: object
-                  properties:
-                    type_url:
-                      type: string
-                    value:
-                      type: string
+                  $ref: '#/definitions/TypeValue'
               memo: 
                 type: string
               timeout_height:
@@ -200,21 +180,11 @@ definitions:
               extension_options: 
                 type: array
                 items: 
-                  type: object
-                  properties:
-                    type_url:
-                      type: string
-                    value:
-                      type: string  
+                  $ref: '#/definitions/TypeValue'
               non_critical_extension_options:
                 type: array
                 items: 
-                  type: object
-                  properties:
-                    type_url:
-                      type: string
-                    value:
-                      type: string 
+                  $ref: '#/definitions/TypeValue'
           auth_info:
             type: object
             properties:
@@ -254,9 +224,9 @@ definitions:
       public_key:
         type: object
         properties:
-          type_url:
+          "@type":
             type: string
-          value:
+          key:
             type: string  
       mode_info:
         type: object
@@ -290,4 +260,11 @@ definitions:
                   key:
                     type: string
                   value:
-                    type: string        
+                    type: string
+  TypeValue:
+    type: object
+    properties:
+      type_url:
+        type: string
+      value:
+        type: string

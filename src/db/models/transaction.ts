@@ -14,7 +14,10 @@ let AmountSchema = new Schema({
     amount: String,
 });
 
-let TypeValueSchema = new Schema({})
+let TypeValueSchema = new Schema({
+    // This schema contains the Msgs's type and its value
+    // The specific format of the value is dependent on the Msg type
+})
 
 let SignerSchema = new Schema({
     public_key: {
