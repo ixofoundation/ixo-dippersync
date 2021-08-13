@@ -1,6 +1,6 @@
 {
   "name": "ixo-dippersync",
-  "version": "1.1.7",
+  "version": "1.0.0",
   "description": "Exposes endpoints that return data from a MongoDB populated by Big Dipper",
   "main": "index.js",
   "scripts": {
@@ -13,7 +13,7 @@
   "keywords": [
     "blockchain"
   ],
-  "author": "Nicolaas Vercuiel/Stefania Damato",
+  "author": "Stefania Damato",
   "license": "MIT",
   "dependencies": {
     "axios": "^0.21.1",
