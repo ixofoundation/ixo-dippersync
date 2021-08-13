@@ -15,7 +15,7 @@ node {
     }
 
     stage('Build image') {
-        app = docker.build("ixofoundation/ixo-blocksync:" + branch)
+        app = docker.build("ixofoundation/ixo-dippersync:" + branch)
     }
 
     stage('Test image') {

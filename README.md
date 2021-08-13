@@ -9,7 +9,7 @@ Refer to [src/schema/api.yml](src/schema/api.yml) or visit the online version (c
 ### From Source
 **Requirements**: [MongoDB](https://docs.mongodb.com/manual/installation/)
 
-Copy `.env-example` to `.env` and configure. If this step is skipped, ixo-dippersync will use `.env-example` as the configuration by default.
+Copy `.env-example` to `.env` and configure as is necessary. (If this step is skipped, ixo-dippersync will use `.env-example` as the configuration by default, but note that this will likely result in errors if it does not match with your actual local configuration.)
 
 Then:
 ```bash

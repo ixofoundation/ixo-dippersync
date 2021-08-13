@@ -6,15 +6,8 @@ import MongoUtils from './db/mongo_utils';
 
 // Set the port
 const port = (process.env.PORT || 8080);
-const chainUri = (process.env.CHAIN_URI || 'http://localhost:26657');
-const bcRest = (process.env.BC_REST || 'http://localhost:1317');
-const bondsInfoExtractPeriod = process.env.BONDS_INFO_EXTRACT_PERIOD_BLOCKS ?
-  parseInt(process.env.BONDS_INFO_EXTRACT_PERIOD_BLOCKS) : undefined
 
 App.set('port', port);
-App.set('chainUri', chainUri);
-App.set('bcRest', bcRest);
-App.set('bondsInfoExtractPeriod', bondsInfoExtractPeriod);
 const server = http.createServer(App);
 export var io = require('socket.io')(server);
 
