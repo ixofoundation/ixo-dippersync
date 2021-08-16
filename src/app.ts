@@ -28,11 +28,11 @@ class App {
   // Configure API endpoints.
   private routes(transactionHandler: TransactionHandler): void {
     // GET REQUESTS
-    this.express.get('/transactions/', (req, res) => {
+    this.express.get('/', (req, res) => {
       res.send('Transactions API is running');
     });
 
-    this.express.get('/transactions/listTransactionsByAddr/:addr', (req, res, next) => {
+    this.express.get('/listTransactionsByAddr/:addr', (req, res, next) => {
       transactionHandler.listTransactionsByAddress(req.params.addr).then((tx: any) => {
         res.send(tx);
       }).catch((err) => {
@@ -40,7 +40,7 @@ class App {
       });
     });
 
-    this.express.get('/transactions/listTransactionsByAddrByAsset/:addr/:asset', (req, res, next) => {
+    this.express.get('/listTransactionsByAddrByAsset/:addr/:asset', (req, res, next) => {
       transactionHandler.listTransactionsByAddressByAsset(req.params.addr, req.params.asset).then((tx: any) => {
         res.send(tx);
       }).catch((err) => {
@@ -48,7 +48,7 @@ class App {
       });
     });
 
-    this.express.get('/transactions/listTransactionsByBondDid/:did', (req, res, next) => {
+    this.express.get('/listTransactionsByBondDid/:did', (req, res, next) => {
       transactionHandler.listTransactionsByBondDid(req.params.did).then((tx: any) => {
         res.send(tx);
       }).catch((err) => {
