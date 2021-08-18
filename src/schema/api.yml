@@ -3,7 +3,7 @@ info:
   version: '1.0'
   title: 'IXO'
   description: ''
-host: block-sync-pandora.ixo.world/transactions
+host: blocksync-pandora.ixo.world/transactions
 schemes:
   - https
   - http
