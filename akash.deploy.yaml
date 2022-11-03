@@ -1,0 +1,29 @@
+#deployment for blocksync on the akash network
+#this file has not been tested
+version: "2.0"
+
+#this api can be deployed seperately, but should rather be deployed allongside:
+#https://github.com/forbole/big-dipper
+
+services:   #environment variables still need to be filled
+  dippersync:  
+    image: northroomza/ixo-dippersync:latest
+    env:
+      - 'url=https://add.the.full.domain.here'
+      - NODE_ENV=production
+      - PORT=8080
+      - MONGODB_BIG_DIPPER_URI=mongodb://db:27017/big-dipper-DB
+    expose:
+      - port: 8080
+        as: 80
+        accept: 
+          - "add.domain.hostname.here"
+        to: 
+          - global : true
+  db: 
+    image: mongo:latest
+    expose:
+      - port: 5432
+        as: 5432
+        to: 
+          - global : false
