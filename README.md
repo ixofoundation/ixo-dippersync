@@ -17,6 +17,8 @@ npm install
 npm run build
 npm start
 ```
+### Akash
+[![Akash](https://raw.githubusercontent.com/ixofoundation/ixo-dippersync/master/akash%20button.svg)](https://github.com/ixofoundation/ixo-dippersync/blob/master/akash.deploy.yaml) 
 
 ### Using Docker (with Compose)
 **Requirements**: [Docker](https://docs.docker.com/engine/install/) and [Docker Compose](https://docs.docker.com/compose/install/)
