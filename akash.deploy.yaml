@@ -3,7 +3,7 @@
 version: "2.0"
 
 #this api can be deployed seperately, but should rather be deployed allongside:
-#https://github.com/forbole/big-dipper
+#https://github.com/forbole/big-dipper or at least have access to the same DB that big-dipper writes to
 
 services:   #environment variables still need to be filled
   dippersync:  
@@ -12,7 +12,7 @@ services:   #environment variables still need to be filled
       - 'url=https://add.the.full.domain.here'
       - NODE_ENV=production
       - PORT=8080
-      - MONGODB_BIG_DIPPER_URI=mongodb://db:27017/big-dipper-DB
+      - MONGODB_BIG_DIPPER_URI=mongodb://db:27017/big-dipper-DB #add user and password credentials
     expose:
       - port: 8080
         as: 80
@@ -21,9 +21,60 @@ services:   #environment variables still need to be filled
         to: 
           - global : true
   db: 
-    image: mongo:latest
+    image: mongo:latest     #add user and password credentials
+    storage:
+      data: 
+        mount: /db/data
     expose:
       - port: 5432
         as: 5432
         to: 
           - global : false
+
+profiles:
+  compute:
+    dippersync:
+      resources:
+        cpu:
+          units: 1.0
+        memory:
+          size: 512Mi
+        storage: 512Mi
+    db:
+      resources:
+        cpu:
+          units: 1.0
+        memory:
+          size: 512Mi
+        storage:
+          - 512Mi
+          - name: data
+            size: 5Gi
+            attributes:
+              persistent: true
+              class: beta2
+  placements:   #this sections needs to be configured
+    westcoast:    #example region
+      attributes: 
+        region: us-west #example region
+      pricing: 
+        dippersync-profile:
+          denom: #add token denom
+          amount: #add token amount
+        db-profile:
+          denom: #add token denom
+          amount: #add token amount
+deployment: 
+  dippersync:
+    akash:
+      profiles: dippersync
+      count: 1   #this api is properly scaleable and should be as easy as increasing the count.
+  db:
+    akash:  
+      profiles: db
+      count: 1
+
+
+      ###Please note that storage only persists during the lease. The storage is lost when: 
+      ###The deployment is migrated to a different provider.
+      ###The deployment’s lease is closed.  Even when relaunched onto the same provider, storage will not persist across leases.
